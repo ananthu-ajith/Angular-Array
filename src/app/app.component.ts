@@ -39,11 +39,30 @@ export class AppComponent {
 
 
   filterStudents() {
+
+
+    if(isNaN(parseInt(this.searchTerm)))
+    
+{
     this.students = this.students.filter(student => {
-      const searchString = this.searchTerm.toLowerCase();
+      const searchString = this.searchTerm;
       return student.name.toLowerCase().includes(searchString) ||
              student.department.toLowerCase().includes(searchString);
     });
+  }
+    
+
+    else
+    {
+    this.students = this.students.filter(student => {
+       const searchString = this.searchTerm;
+       return student.age==parseInt(searchString) ||
+              student.totalMarks==parseInt(searchString);
+    }
+     );
+  }
+    
+
 
     
   }
@@ -69,10 +88,10 @@ export class AppComponent {
   
   resetStudents() {
     this.students = [
-      new Student("John", 20, "Computer Science", 85),
-      new Student("Emily", 21, "Electrical Engineering", 78),
-      new Student("David", 19, "Mechanical Engineering", 92),
-      new Student("Sophia", 22, "Chemistry", 75)
+      new Student("Akash", 20, "Computer Engineering", 88),
+    new Student("Chandu", 21, "Electrical Engineering", 58),
+    new Student("David", 24, "Mechanical Engineering", 62),
+    new Student("Beena", 23, "Civil Engineering", 96)
     ];
   }
 
