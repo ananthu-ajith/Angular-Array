@@ -14,10 +14,10 @@ export class AppComponent {
   title = 'Angular-array';
 
   students: Student[] = [
-    new Student("John", 20, "Computer Science", 85),
-    new Student("Emily", 21, "Electrical Engineering", 78),
-    new Student("David", 19, "Mechanical Engineering", 92),
-    new Student("Sophia", 22, "Chemistry", 75)
+    new Student("Akash", 20, "Computer Engineering", 88),
+    new Student("Chandu", 21, "Electrical Engineering", 58),
+    new Student("David", 24, "Mechanical Engineering", 62),
+    new Student("Beena", 23, "Civil Engineering", 96)
   ];
 
 
@@ -44,19 +44,30 @@ export class AppComponent {
       return student.name.toLowerCase().includes(searchString) ||
              student.department.toLowerCase().includes(searchString);
     });
+
+    
   }
 
   filterStudentsByMarks() {
-    if (!this.minMarks) {
-      // If minMarks is not provided, reset students array to original state
+
+    
+    const minMarksNumber = parseFloat(this.minMarks.toString());
+    console.log(minMarksNumber);
+    
+    if (typeof minMarksNumber === 'number') 
+  {
+    if (isNaN(minMarksNumber) || minMarksNumber <= 0) {
       this.resetStudents();
       return;
     }
-
-    this.students = this.students.filter(student => student.totalMarks > this.minMarks);
+  
+    this.students = this.students.filter(student => student.totalMarks > minMarksNumber);
   }
+  
+  
+  }
+  
   resetStudents() {
-    // Reset students array to original state
     this.students = [
       new Student("John", 20, "Computer Science", 85),
       new Student("Emily", 21, "Electrical Engineering", 78),
